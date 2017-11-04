@@ -1,6 +1,6 @@
 body {
-  background: black;
-  color: white;
+  background: white;
+  color: black;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -32,6 +32,13 @@ body {
   text-align: center;
   font-size: 24px;
   transition: all ease .5s;
+  background: #eee;
+
+      -moz-border-image: -moz-linear-gradient(left, #3acfd5 0%, #3a4ed5 100%);
+      -webkit-border-image: -webkit-linear-gradient(left, #3acfd5 0%, #3a4ed5 100%);
+      border-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%);
+
+      border-image-slice: 1;
 }
 
 .key.active {
