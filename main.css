@@ -42,14 +42,14 @@ body {
 }
 
 .key.active {
-  background-color: red;
+  background-color:#f36173;
   color: black;
 }
 
 .key.active.success {
-  background-color: #2ecc71;
-  color: white;
-  border-color: #2ecc71;
+  background-color: #acb7c5;
+  color: black;
+  border-color: #acb7c5;
 }
 
 .key.active.fail {

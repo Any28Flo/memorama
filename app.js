@@ -1,7 +1,21 @@
-function cargaPagina(){
+
   const niveles = 15
   let teclas = generarTeclas(niveles)
 
+  function siguienteNivel(nivelActual){
+    if(nivelActual == niveles){
+      return alert("¡¡GANASTE!!");
+    }
+    alert(`Nivel ${nivelActual+1}`)
+    for(let i = 0 ; i<=nivelActual ; i++){
+      setTimeout(()=>{
+        activate(teclas[i]);
+      },1000 * (i+1) +1000);
+
+    }
+
+  }
+  siguienteNivel(2);
   function generarTeclas(niveles) {
     return new Array(niveles).fill(0).map(generarTeclaAleatoria)
   }
@@ -30,9 +44,3 @@ function cargaPagina(){
   function deactivate(el) {
     el.className = 'key'
   }
-  document.addEventListener("keydown", function(e){
-    console.log(e.keyCode);
-     activate(e.keyCode);
-  })
-}
-cargaPagina();
