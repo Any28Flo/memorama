@@ -1,21 +1,41 @@
-
-  const niveles = 15
+const niveles = 15
   let teclas = generarTeclas(niveles)
 
-  function siguienteNivel(nivelActual){
-    if(nivelActual == niveles){
-      return alert("¡¡GANASTE!!");
-    }
-    alert(`Nivel ${nivelActual+1}`)
-    for(let i = 0 ; i<=nivelActual ; i++){
-      setTimeout(()=>{
-        activate(teclas[i]);
-      },1000 * (i+1) +1000);
-
+  function siguienteNivel(nivelActual) {
+    if (nivelActual == niveles) {
+      return alert('Ganaste')
     }
 
+    alert(`Nivel ${nivelActual + 1}`)
+
+    for (let i = 0; i <= nivelActual; i++) {
+      setTimeout(() => activate(teclas[i]),
+        1000 * (i+1))
+    }
+
+    let i = 0
+    let teclaActual = teclas[i]
+    window.addEventListener('keydown', onkeydown)
+
+    function onkeydown(ev) {
+      if (ev.keyCode == teclaActual) {
+        activate(teclaActual, { success: true })
+        i++
+        if (i > nivelActual) {
+          window.removeEventListener('keydown', onkeydown)
+          setTimeout(() => siguienteNivel(i), 1500)
+        }
+        teclaActual = teclas[i]
+      } else {
+        activate(ev.keyCode, { fail: true })
+        window.removeEventListener('keydown', onkeydown)
+        alert('Perdiste :(')
+      }
+    }
   }
-  siguienteNivel(2);
+
+  siguienteNivel(0)
+
   function generarTeclas(niveles) {
     return new Array(niveles).fill(0).map(generarTeclaAleatoria)
   }
