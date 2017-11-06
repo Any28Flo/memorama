@@ -1,16 +1,23 @@
-const niveles = 15
+const niveles = 1
   let teclas = generarTeclas(niveles)
 
   function siguienteNivel(nivelActual) {
     if (nivelActual == niveles) {
-      return alert('Ganaste')
+      return swal({
+        title:'Ganaste',
+        type: 'success'
+      })
     }
+    swal({
+      timer:1000,
+      title: `Nivel ${nivelActual + 1}`,
+      showConfirmButton: false
+    })
 
-    alert(`Nivel ${nivelActual + 1}`)
 
     for (let i = 0; i <= nivelActual; i++) {
       setTimeout(() => activate(teclas[i]),
-        1000 * (i+1))
+        1000 * (i+1) + 1000)
     }
 
     let i = 0
@@ -29,7 +36,17 @@ const niveles = 15
       } else {
         activate(ev.keyCode, { fail: true })
         window.removeEventListener('keydown', onkeydown)
-        alert('Perdiste :(')
+        swal({
+          
+          title: `Perdiste`,
+          text: 'Quieres jugar de nuevo?',
+        },function(ok){
+          if(ok){
+            teclas = generarTeclas(niveles);
+            siguienteNivel(0);
+          }
+        } )
+
       }
     }
   }
