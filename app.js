@@ -37,18 +37,18 @@ const niveles = 3
            activate(ev.keyCode, { fail: true })
            window.removeEventListener('keydown', onkeydown)
            swal({
-             title: 'Perdiste',
-             text: '¿Quieres jugar de nuevo?',
-             showCancelButton: true,
-             confirmButtonText: 'Sí',
-             cancelButtonText: 'No',
-             closeOnConfirm: true
-           }, function (ok) {
-             if (ok) {
-               teclas = generarTeclas(niveles)
-               siguienteNivel(0)
-             }
-           })
+               title: 'Perdiste',
+               text: '¿Quieres jugar de nuevo?',
+               showCancelButton: true,
+               confirmButtonText: 'Sí',
+               cancelButtonText: 'No',
+              })
+          .then((ok) => {
+            if (ok) {
+              teclas = generarTeclas(niveles)
+              siguienteNivel(0)
+            }
+          });
          }
        }
      }
